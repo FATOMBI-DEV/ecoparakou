@@ -44,7 +44,7 @@ $secteurs = $mysqli->query("SELECT nom, slug FROM secteurs ORDER BY ordre");
         </li>
 
         <li class="nav-item">
-          <a class="nav-link btn btn-warning text-white fw-bold px-3" href="/ecoparakou/public/inscription.php">Inscrire</a>
+          <a class="nav-link btn btn-warning text-white fw-bold px-3" href="/ecoparakou/public/inscription_entreprise.php">Inscrire</a>
         </li>
 
         <li class="nav-item">
@@ -53,7 +53,7 @@ $secteurs = $mysqli->query("SELECT nom, slug FROM secteurs ORDER BY ordre");
 
         <!-- Barre de recherche -->
         <li class="nav-item">
-          <form class="d-flex" action="/ecoparakou/public/r_recherche.php" method="get" role="search" aria-label="Barre de recherche">
+          <form class="d-flex" action="/ecoparakou/public/recherche.php" method="get" role="search" aria-label="Barre de recherche">
             <input class="form-control me-2" type="search" name="q" placeholder="Rechercher..." aria-label="Rechercher">
             <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
           </form>

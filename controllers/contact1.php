@@ -18,6 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $contenu = "<p><strong>Nom :</strong> $nom<br><strong>Email :</strong> $email<br><strong>Sujet :</strong> $sujet</p><p>$message</p>";
   envoyer_notification(EMAIL_ADMIN, "Nouveau message de contact", $contenu);
 
-  header("Location: /contact.php?success=1");
+  header("Location: /ecoparakou/public/contact.php?success=1");
   exit;
 }

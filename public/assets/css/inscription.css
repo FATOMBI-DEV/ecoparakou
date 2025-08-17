@@ -1,33 +1,67 @@
-/* === Formulaire d'inscription entreprise === */
 :root {
   --color-primary: #1F2A44;
   --color-accent: #FF9800;
   --color-bg: #F5F1EB;
   --color-text: #333333;
+  --color-white: #ffffff;
+  --color-muted: #6c757d;
   --font-main: 'Poppins', sans-serif;
 }
-/* === Formulaire multi-étapes : inscription entreprise === */
+
+* {
+  box-sizing: border-box;
+}
 
 body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
   background-color: var(--color-bg);
   color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+.inscription-wrapper {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+.inscription-wrapper .container {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 /* Titre */
-h2 {
+.inscription-wrapper h2 {
   font-weight: 600;
   font-size: 2rem;
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
 }
 
 /* Barre de progression */
-.progress {
+.inscription-wrapper .progress {
   height: 25px;
   background-color: #e9ecef;
   border-radius: 50px;
   overflow: hidden;
+  margin-bottom: 2rem;
 }
 
-.progress-bar {
+.inscription-wrapper .progress-bar {
   background-color: var(--color-accent);
   font-weight: 500;
   font-size: 0.95rem;
@@ -35,81 +69,108 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--color-white);
 }
 
 /* Étapes */
-.form-step {
+.inscription-wrapper .form-step {
   display: none;
-  animation: fadeIn 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInStep 0.5s ease forwards;
 }
 
-.form-step.active {
+.inscription-wrapper .form-step.active {
   display: block;
 }
 
-/* Boutons */
-.btn-accent {
-  background-color: var(--color-accent);
-  color: white;
-  border: none;
-}
-
-.btn-accent:hover {
-  background-color: #e67e00;
+@keyframes fadeInStep {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Champs */
-.form-control,
-.form-select {
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  padding: 0.6rem 0.75rem;
-  font-size: 1rem;
-  transition: border-color 0.2s ease;
+.inscription-wrapper label {
+  font-weight: 500;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
-.form-control:focus,
-.form-select:focus {
+.inscription-wrapper .form-control,
+.inscription-wrapper .form-select {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: var(--font-main);
+  transition: border-color 0.2s ease;
+  margin-bottom: 0.5rem;
+}
+
+.inscription-wrapper .form-control:focus,
+.inscription-wrapper .form-select:focus {
   border-color: var(--color-accent);
   box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
+  outline: none;
 }
 
 /* Messages d'erreur */
-.invalid-feedback {
+.inscription-wrapper .invalid-feedback {
   font-size: 0.875rem;
   color: #dc3545;
-  margin-top: 0.25rem;
+  margin-top: -0.25rem;
+  margin-bottom: 0.75rem;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Boutons */
+.inscription-wrapper button {
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .progress {
-    height: 20px;
-  }
-
-  .btn-accent,
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    margin-bottom: 10px;
-  }
+.inscription-wrapper .btn-accent {
+  background-color: var(--color-accent);
+  color: var(--color-white);
 }
 
-.fade-message {
+.inscription-wrapper .btn-accent:hover {
+  background-color: #e67e00;
+}
+
+.inscription-wrapper .btn-secondary {
+  background-color: var(--color-muted);
+  color: var(--color-white);
+}
+
+.inscription-wrapper .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.inscription-wrapper .btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.inscription-wrapper .btn-primary:hover {
+  background-color: #162033;
+}
+
+/* Message de succès */
+.inscription-wrapper .fade-message {
   background-color: #e6f9ec;
   border-left: 5px solid var(--color-accent);
   padding: 1rem 1.2rem;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 1rem;
   color: var(--color-primary);
   display: flex;
@@ -127,4 +188,30 @@ h2 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inscription-wrapper h2 {
+    font-size: 1.5rem;
+  }
+
+  .inscription-wrapper .progress {
+    height: 20px;
+  }
+
+  .inscription-wrapper button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* Footer normal */
+footer {
+  background-color: var(--color-white);
+  color: var(--color-muted);
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
 }

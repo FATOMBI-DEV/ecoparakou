@@ -7,6 +7,7 @@ define('SITE_NAME', 'Eco Parakou');
 define('SITE_DESCRIPTION', 'Annuaire des entreprises de Parakou');
 define('SITE_AUTHOR', 'Stagiaires-Light');
 
+
 // === Chemins ===
 define('ROOT_PATH', dirname(__DIR__));
 define('ASSETS_PATH', '/ecoparakou/public/assets'); 
