@@ -1,0 +1,23 @@
+body {
+    background-color: #F5F1EB;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 78px;
+}
+.table th {
+    background-color: #1F2A44;
+    color: #ffffff;
+}
+
+.btn-accent {
+    background-color: #FF9800;
+    color: #ffffff;
+}
+
+.btn-accent:hover {
+    background-color: #e68900;
+}
+
+.fade-out {
+    opacity: 0; transition:
+    opacity 0.5s ease-out;
+}

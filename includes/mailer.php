@@ -11,10 +11,10 @@ function envoyer_notification($destinataire, $sujet, $contenu_html) {
 
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.example.com'; // à adapter
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'ton-email@example.com';
-        $mail->Password = 'ton-mot-de-passe';
+        $mail->Username = 'parakoueco@gmail.com';
+        $mail->Password = 'cjaufapxsqvgixao';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -23,6 +23,10 @@ function envoyer_notification($destinataire, $sujet, $contenu_html) {
         $mail->isHTML(true);
         $mail->Subject = $sujet;
         $mail->Body = $contenu_html;
+
+        // Encodage UTF-8
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
 
         $mail->send();
         return true;

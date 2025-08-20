@@ -34,7 +34,7 @@ $stmt = $mysqli->prepare("DELETE FROM utilisateurs WHERE id = ?");
 $stmt->bind_param("i", $id);
 if ($stmt->execute()) {
   log_action($admin_id, "Suppression de l'utilisateur", "utilisateurs", $id);
-  header("Location: utilisateurs.php?success=" . urlencode("✅ Utilisateur supprimé."));
+  header("Location: liste_utilisateur.php?success=" . urlencode("✅ Utilisateur supprimé."));
 } else {
   echo "Erreur lors de la suppression.";
 }

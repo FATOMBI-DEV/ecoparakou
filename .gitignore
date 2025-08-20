@@ -1,0 +1,9 @@
+# Dossiers à ignorer
+/libs/
+/vendor/
+node_modules/
+
+# Fichiers sensibles
+.env
+config.php
+*.log

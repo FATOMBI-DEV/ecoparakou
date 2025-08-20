@@ -2,7 +2,7 @@
 include_once __DIR__ . '/db.php';
 include_once __DIR__ . '/constants.php';
 
-$secteurs = $mysqli->query("SELECT nom, slug FROM secteurs ORDER BY ordre");
+$secteurs_menu = $mysqli->query("SELECT nom, slug FROM secteurs ORDER BY ordre");
 ?>
 
 <header class="navbar navbar-expand-lg bg-dark text-light fixed-top shadow-sm py-2">
@@ -33,7 +33,7 @@ $secteurs = $mysqli->query("SELECT nom, slug FROM secteurs ORDER BY ordre");
             Secteurs
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="secteursDropdown">
-            <?php while ($s = $secteurs->fetch_assoc()): ?>
+            <?php while ($s = $secteurs_menu->fetch_assoc()): ?>
               <li>
                 <a class="dropdown-item" href="/ecoparakou/public/secteur.php?slug=<?= htmlspecialchars($s['slug'], ENT_QUOTES) ?>">
                   <?= htmlspecialchars($s['nom'], ENT_QUOTES) ?>
@@ -44,7 +44,7 @@ $secteurs = $mysqli->query("SELECT nom, slug FROM secteurs ORDER BY ordre");
         </li>
 
         <li class="nav-item">
-          <a class="nav-link btn btn-warning text-white fw-bold px-3" href="/ecoparakou/public/inscription_entreprise.php">Inscrire</a>
+          <a class="nav-link btn btn-warning text-white fw-bold px-3" href="/ecoparakou/public/inscrit_entreprise.php">Inscrire</a>
         </li>
 
         <li class="nav-item">

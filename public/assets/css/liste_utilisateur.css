@@ -1,0 +1,22 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F5F1EB;
+  color: #333333;
+  padding-top: 55px;
+}
+.table th {
+  background-color: #1F2A44;
+  color: #ffffff;
+}
+.btn-accent {
+  background-color: #FF9800;
+  color: #ffffff;
+}
+.btn-accent:hover {
+  background-color: #e68900;
+}
+.token {
+  font-size: 0.85em;
+  color: #6c757d;
+  word-break: break-word;
+}

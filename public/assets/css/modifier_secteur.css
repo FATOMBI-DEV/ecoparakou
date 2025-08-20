@@ -1,0 +1,18 @@
+body {
+    background-color: #F5F1EB;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 78px;
+}
+.form-control:focus {
+    border-color: #FF9800;
+    box-shadow: 0 0 0 0.2rem rgba(255,152,0,.25);
+}
+
+.btn-accent {
+    background-color: #FF9800;
+    color: #fff;
+}
+
+.btn-accent:hover {
+    background-color: #e68900;
+}

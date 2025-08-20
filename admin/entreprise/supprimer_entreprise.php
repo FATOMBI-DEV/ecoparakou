@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_id'])) {
 
 $admin_id = $_SESSION['admin_id'];
 
-// 🔐 Vérification du rôle
+// Vérification du rôle
 $stmt = $mysqli->prepare("SELECT role FROM utilisateurs WHERE id = ?");
 $stmt->bind_param("i", $admin_id);
 $stmt->execute();
@@ -23,7 +23,7 @@ if ($role !== 'admin') {
   exit;
 }
 
-// 📥 Vérification des données
+// Vérification des données
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['id']) || !is_numeric($_POST['id'])) {
   echo "ID invalide.";
   exit;
@@ -37,7 +37,7 @@ if (empty($motif)) {
   exit;
 }
 
-// 📦 Récupération des infos entreprise
+// Récupération des infos entreprise
 $stmt = $mysqli->prepare("SELECT nom, email_contact FROM entreprises WHERE id = ?");
 $stmt->bind_param("i", $entreprise_id);
 $stmt->execute();
@@ -50,27 +50,47 @@ if (!$nom_entreprise || !$email_contact) {
   exit;
 }
 
-// 🗑️ Suppression
-$stmt = $mysqli->prepare("DELETE FROM entreprises WHERE id = ?");
-$stmt->bind_param("i", $entreprise_id);
-$stmt->execute();
-$stmt->close();
+// Démarrage de la transaction
+$mysqli->begin_transaction();
 
-// 🔔 Notification
-$message = "Votre entreprise a été supprimée définitivement. Motif : $motif";
-$stmt = $mysqli->prepare("INSERT INTO notifications (entreprise_id, type, message) VALUES (?, 'suppression', ?)");
-$stmt->bind_param("is", $entreprise_id, $message);
-$stmt->execute();
-$stmt->close();
+try {
+  // Notification
+  $message = "Votre entreprise a été supprimée définitivement. Motif : $motif";
+  $stmt = $mysqli->prepare("INSERT INTO notifications (entreprise_id, type, message) VALUES (?, 'suppression', ?)");
+  $stmt->bind_param("is", $entreprise_id, $message);
+  $stmt->execute();
+  $stmt->close();
 
-// 📩 Email
-$sujet = "Suppression de votre entreprise sur Eco Parakou";
-$contenu = "Bonjour,\n\nVotre entreprise « $nom_entreprise » a été supprimée définitivement de la plateforme.\n\nMotif : $motif\n\nPour toute question, contactez l’équipe Eco Parakou.\n\nCordialement,\nL’équipe Eco Parakou";
-envoyer_email($email_contact, $sujet, $contenu);
+  // Suppression
+  $stmt = $mysqli->prepare("DELETE FROM entreprises WHERE id = ?");
+  $stmt->bind_param("i", $entreprise_id);
+  $stmt->execute();
+  $stmt->close();
 
-// 🧾 Log
-log_action($admin_id, "Suppression entreprise #$entreprise_id : $motif", "entreprises", $entreprise_id);
+  // Email
+  $sujet = "Suppression de votre entreprise sur Eco Parakou";
+  $contenu = "<h3>Bonjour {$nom_entreprise},</h3>
+  <p>Votre entreprise a été supprimée définitivement de la plateforme EcoParakou.</p>
+  <p><strong>Motif :</strong> " . $motif . "</p>
+  <p><strong>Date :</strong> " . date('d/m/Y - H:i') . "</p>
+  <p>Pour toute question, contactez l’équipe Eco Parakou.</p>
+  <br>
+  <p>— Equipe EcoParakou</p>
+  ";
 
-// ✅ Redirection
-header("Location: liste_entreprise.php?success=" . urlencode("Entreprise supprimée."));
-exit;
+  envoyer_notification($email_contact, $sujet . SITE_NAME, $contenu);
+
+  // Log
+  log_action($admin_id, "Suppression entreprise #$entreprise_id : $motif", "entreprises", $entreprise_id);
+
+  // Commit
+  $mysqli->commit();
+
+  header("Location: liste_entreprise.php?success=" . urlencode("Entreprise supprimée."));
+  exit;
+
+} catch (Exception $e) {
+  $mysqli->rollback();
+  echo "Erreur lors de la suppression : " . $e->getMessage();
+  exit;
+}

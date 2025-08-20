@@ -63,13 +63,20 @@ $stmt->execute();
 $stmt->close();
 
 // Envoi email
-$sujet = "Rejet de votre entreprise sur Eco Parakou";
-$contenu = "Bonjour,\n\nVotre entreprise « $nom_entreprise » a été rejetée.\n\nMotif : $motif_rejet\n\nVous pouvez soumettre une nouvelle demande après correction.\n\nCordialement,\nL’équipe Eco Parakou";
-envoyer_email($email_contact, $sujet, $contenu);
+$sujet = "Rejet de votre entreprise sur ";
+$contenu = "<h3>Bonjour {$nom_entreprise},</h3>
+  <p>Votre entreprise a été rejetée sur EcoParakou.</p>
+  <p><strong>Motif :</strong> " . ($motif_rejet ?: "vérification ou non-conformité") . "</p>
+  <p><strong>Date :</strong> " . date('d/m/Y - H:i') . "</p>
+  <p>Vous pouvez soumettre une nouvelle demande après correction ou nous contacter pour plus d’informations.</p>
+  <br>
+  <p>— Equipe EcoParakou</p>
+  ";
+//envoyer_email($email_contact, $sujet, $contenu);
 
-// Log action
-log_action($admin_id, "Rejet de l'entreprise", "entreprises", $entreprise_id);
+envoyer_notification($email_contact, $sujet . SITE_NAME, $contenu);
 
-// Redirection
+log_action($admin_id, "Rejet d entreprise #$entreprise_id", "entreprises", $entreprise_id);
+
 header("Location: liste_entreprise.php?success=" . urlencode("Entreprise rejetée avec motif."));
 exit;

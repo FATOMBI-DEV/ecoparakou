@@ -1,0 +1,77 @@
+
+:root {
+    --color-primary: #1F2A44;
+    --color-accent: #FF9800;
+    --color-bg: #F5F1EB;
+    --color-text: #333333;
+    --color-white: #ffffff;
+    --color-muted: #6c757d;
+    --font-main: 'Poppins', sans-serif;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    /*min-height: 100vh;*/
+    padding-top: 55px;
+}
+
+.form-box {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+    color: #1F2A44;
+    margin-bottom: 20px;
+}
+
+main {
+    flex: 1;
+    padding: 2rem 1rem;
+}
+
+.form-ajout-utilisateur input,
+.form-ajout-utilisateur select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+    
+
+.form-ajout-utilisateur button {
+    width: 100%;
+    padding: 12px;
+    background: #FF9800;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.message {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.error { background:#FFEBEE; color:#C62828; }
+.success { background:#E8F5E9; color:#2E7D32; }

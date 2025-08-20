@@ -13,7 +13,7 @@
     <head>
       <?php include_once '../includes/meta-head.php'; ?>
       <link rel="stylesheet" href="assets/css/header.css">
-      <link rel="stylesheet" href="assets/css/inscription.css">
+      <link rel="stylesheet" href="assets/css/inscrit_entreprise.css">
       <link rel="stylesheet" href="assets/css/footer.css">
       
     </head>
@@ -41,7 +41,7 @@
               <div class="progress-bar" role="progressbar" id="progressBar">Étape 1 sur 3</div>
             </div>
 
-            <form action="../controllers/inscription1.php" method="post" enctype="multipart/form-data" id="formInscription" novalidate>
+            <form action="../controllers/inscrit_entreprise1.php" method="post" enctype="multipart/form-data" id="formInscription" novalidate>
               
               <!-- Étape 1 : Infos générales -->
               <div class="form-step active">

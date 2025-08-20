@@ -2,11 +2,11 @@
 session_start();
 include_once '../includes/db.php';
 include_once '../includes/fonctions.php';
-
+$page_title = "Connexion Admin";
 $error = '';
 $email_prefill = '';
 
-// 🔐 Si token présent dans l'URL
+// Si token présent dans l'URL
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
     $stmt = $mysqli->prepare("SELECT email FROM utilisateurs WHERE token_invitation = ? AND actif = 1");
@@ -21,7 +21,7 @@ if (isset($_GET['token'])) {
     $stmt->close();
 }
 
-// 🔄 Traitement du formulaire
+// Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['admin_id'] = $id;
             $_SESSION['admin_nom'] = $nom;
 
-            // 🧼 Supprimer le token après première connexion
+            // Supprimer le token après première connexion
             if (!empty($token_db)) {
                 $stmt2 = $mysqli->prepare("UPDATE utilisateurs SET token_invitation = NULL WHERE id = ?");
                 $stmt2->bind_param("i", $id);
@@ -59,97 +59,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Connexion Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-primary: #1F2A44;
-      --color-accent: #FF9800;
-      --color-bg: #F5F1EB;
-      --color-text: #333333;
-      --color-white: #ffffff;
-      --color-muted: #6c757d;
-      --color-hover: #f0f0f0;
-      --font-main: 'Poppins', sans-serif;
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--font-main);
-      background: var(--color-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    .login-box {
-      background: var(--color-white);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 400px;
-      animation: fadeIn 0.8s ease-out;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      color: var(--color-primary);
-      text-align: center;
-    }
-
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid var(--color-muted);
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: var(--color-accent);
-      color: var(--color-white);
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #e68900;
-    }
-
-    .error {
-      color: red;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <head>
+        <?php include_once '../includes/meta-head.php'; ?>
+        <link rel="stylesheet" href="../public/assets/css/ajouter_utilisateur.css">
+        <link rel="stylesheet" href="../public/assets/css/header.css">
+        <link rel="stylesheet" href="../public/assets/css/footer.css">
+       
+      
 </head>
 <body>
-  <div class="login-box">
+   <?php include_once '../includes/header.php'; ?>
+   <main>
+  <div class="form-box">
     <h2>Connexion Admin</h2>
     <?php if ($error): ?>
       <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
-    <form method="POST">
+    <form method="POST" class="form-ajout-utilisateur">
       <input type="email" name="email" placeholder="Email" required value="<?= htmlspecialchars($email_prefill) ?>">
       <input type="password" name="password" placeholder="Mot de passe" required>
       <button type="submit">Se connecter</button>
     </form>
   </div>
+</main>
+  <?php include_once '../includes/footer.php'; ?>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

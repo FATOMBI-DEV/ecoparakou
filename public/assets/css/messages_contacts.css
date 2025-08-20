@@ -1,0 +1,84 @@
+:root {
+  --color-primary: #1F2A44;
+  --color-accent: #FF9800;
+  --color-bg: #F5F1EB;
+  --color-text: #333333;
+  --color-white: #ffffff;
+  --color-muted: #6c757d;
+  --color-hover: #f0f0f0;
+  --font-main: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-main);
+  color: var(--color-text);
+}
+
+h2 {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.table th i {
+  margin-right: 6px;
+}
+
+.table td {
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+.table-hover tbody tr:hover {
+  background-color: var(--color-hover);
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.6em;
+  border-radius: 0.4rem;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.btn-outline-success {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.input-group input {
+  border-radius: 0.375rem 0 0 0.375rem;
+  border: 1px solid var(--color-muted);
+}
+
+.input-group .btn {
+  border-radius: 0 0.375rem 0.375rem 0;
+}
+
+a.text-decoration-none {
+  color: var(--color-primary);
+}
+
+a.text-decoration-none:hover {
+  text-decoration: underline;
+}

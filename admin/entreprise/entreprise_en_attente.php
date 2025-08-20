@@ -2,7 +2,7 @@
 session_start();
 include_once '../../includes/db.php';
 include_once '../../includes/fonctions.php';
-$page_title = "Liste des entreprises";
+$page_title = "Entreprises en attente";
 
 if (!isset($_SESSION['admin_id'])) {
   header("Location: ../login.php");
@@ -17,42 +17,12 @@ $stmt->bind_result($role);
 $stmt->fetch();
 $stmt->close();
 
-// Récupérer les filtres passés en GET
-$search_nom = isset($_GET['search_nom']) ? trim($_GET['search_nom']) : '';
-$filter_statut = isset($_GET['filter_statut']) ? $_GET['filter_statut'] : '';
-
-// Construction dynamique de la requête avec paramètres préparés
-$query = "SELECT e.*, s.nom AS secteur_nom FROM entreprises e
-          LEFT JOIN secteurs s ON e.secteur_id = s.id
-          WHERE 1=1";
-
-$params = [];
-$types = "";
-
-// Filtrer par nom (nom de l’entreprise)
-if ($search_nom !== '') {
-    $query .= " AND e.nom LIKE ?";
-    $params[] = "%" . $search_nom . "%";
-    $types .= "s";
-}
-
-// Filtrer par statut
-$valid_statuts = ['valide', 'rejete', 'suspendu', 'en_attente']; // adapter si besoin
-if ($filter_statut !== '' && in_array($filter_statut, $valid_statuts)) {
-    $query .= " AND e.statut = ?";
-    $params[] = $filter_statut;
-    $types .= "s";
-}
-
-$query .= " ORDER BY e.date_inscription DESC";
-
-// Préparer la requête avec filtres
-$stmt = $mysqli->prepare($query);
-if ($params) {
-    $stmt->bind_param($types, ...$params);
-}
-$stmt->execute();
-$res = $stmt->get_result();
+// Requête modifiée pour ne récupérer que les entreprises en attente
+$sql = "SELECT e.*, s.nom AS secteur_nom FROM entreprises e
+        LEFT JOIN secteurs s ON e.secteur_id = s.id
+        WHERE e.statut = 'en_attente'
+        ORDER BY e.date_inscription DESC";
+$res = $mysqli->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -71,39 +41,17 @@ $res = $stmt->get_result();
 <div class="container py-5">
 
   <?php if (isset($_GET['success']) && $_GET['success'] === 'modifiee'): ?>
-  <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-    <i class="bi bi-check-circle-fill me-2"></i>
-    L’entreprise a été modifiée avec succès.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+    <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+      <i class="bi bi-check-circle-fill me-2"></i>
+      L’entreprise a été modifiée avec succès.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   <?php endif; ?>
 
-  <h2 class="mb-4"><i class="bi bi-building icon-title text-accent me-2"></i>Entreprises inscrites</h2>
-
-  <!-- Formulaire de recherche / filtrage -->
-  <form method="GET" class="row g-3 mb-4" action="">
-    <div class="col-md-6">
-      <input
-        type="text"
-        name="search_nom"
-        class="form-control"
-        placeholder="Rechercher par nom d'entreprise"
-        value="<?= htmlspecialchars($search_nom) ?>"
-      >
-    </div>
-    <div class="col-md-4">
-      <select name="filter_statut" class="form-select">
-        <option value="">Tous les statuts</option>
-        <option value="en_attente" <?= $filter_statut === 'en_attente' ? 'selected' : '' ?>>En attente</option>
-        <option value="valide" <?= $filter_statut === 'valide' ? 'selected' : '' ?>>Validée</option>
-        <option value="rejete" <?= $filter_statut === 'rejete' ? 'selected' : '' ?>>Rejetée</option>
-        <option value="suspendu" <?= $filter_statut === 'suspendu' ? 'selected' : '' ?>>Suspendue</option>
-      </select>
-    </div>
-    <div class="col-md-2 d-grid">
-      <button type="submit" class="btn btn-primary">Filtrer</button>
-    </div>
-  </form>
+  <h2 class="mb-4">
+    <i class="bi bi-building icon-title text-accent me-2"></i>
+    Entreprises en attente
+  </h2>
 
   <table class="table table-bordered table-hover align-middle">
     <thead>

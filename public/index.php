@@ -39,7 +39,7 @@
           <div class="hero-content position-relative z-1">
             <h1 class="display-4 fw-bold"><?= SITE_NAME ?></h1>
             <p class="lead"><?= SITE_DESCRIPTION ?></p>
-            <a href="inscription_entreprise.php" class="btn btn-accent mt-3">Inscrire mon entreprise</a>
+            <a href="inscrit_entreprise.php" class="btn btn-accent mt-3">Inscrire mon entreprise</a>
           </div>
         </section>
 

@@ -1,0 +1,92 @@
+:root {
+      --color-primary: #1F2A44;
+      --color-accent: #FF9800;
+      --color-bg: #F5F1EB;
+      --color-text: #333333;
+      --color-white: #ffffff;
+      --color-muted: #6c757d;
+      --color-hover: #f0f0f0;
+      --font-main: 'Poppins', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      overflow-x: hidden;
+      padding-top: 78px;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 2rem 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar h4 {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--color-accent);
+    }
+
+    .sidebar a {
+      display: block;
+      color: var(--color-white);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: background 0.2s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: var(--color-hover);
+      color: var(--color-primary);
+      padding-left: 10px;
+    }
+
+    .main-content {
+      margin-left: 240px;
+      padding: 2rem;
+      transition: margin 0.3s ease;
+    }
+
+    .card {
+      border: none;
+      border-radius: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .btn-accent {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
+
+    .btn-accent:hover {
+      background-color: #e68a00;
+      color: var(--color-white);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .dashboard-header h2 {
+      font-weight: 600;
+    }
+
+    .dashboard-header small {
+      color: var(--color-muted);
+    }
