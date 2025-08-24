@@ -16,7 +16,9 @@
       $stmt->execute();
 
       // Notification
-      $contenu = "<p><strong>Nom :</strong> $nom<br><strong>Email :</strong> $email<br><strong>Sujet :</strong> $sujet</p><p>$message</p>";
+      $contenu = "<p><strong>Nom :</strong> $nom<br><strong>Email :</strong> $email<br><strong>Sujet :</strong> $sujet<br>
+      <strong>Message :</strong> $message</p>";
+      
       envoyer_notification(EMAIL_ADMIN, "Nouveau message de contact", $contenu);
 
       header("Location: /ecoparakou/public/contact.php?success=1");

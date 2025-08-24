@@ -39,13 +39,14 @@
           
           $sujet = "Accès à Eco Parakou";
           $message = "Bonjour $nom, Votre compte a été créé avec succès.
-          Lien de connexion : $lien
-          Email : $email  
-          Mot de passe initial : $mot_de_passe_clair
-          Merci de modifier votre mot de passe après connexion.
-          Equipe Eco Parakou";
+            Lien de connexion : $lien
+            Email : $email  
+            Mot de passe initial : $mot_de_passe_clair
+            Merci de modifier votre mot de passe après connexion.
+            Equipe Eco Parakou
+          ";
            envoyer_notification($email, $sujet, $message);
-          // Redirection avec message
+          
           header("Location: liste_utilisateur.php?success=" . urlencode("Utilisateur ajouté et email envoyé à $email."));
           exit;
 

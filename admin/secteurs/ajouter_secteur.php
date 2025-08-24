@@ -81,32 +81,38 @@
       <?php include_once '../../includes/header.php'; ?>
       <main>
         <div class="container py-5">
-          <h2 class="mb-4">
+          <h2 class="mb-4 text-primary text-center">
             <i class="bi bi-plus-circle icon-title"></i> Ajouter un secteur
           </h2>
 
           <?php if ($erreur): ?>
-            <div class="alert alert-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i><?= $erreur ?></div>
+            <div class="alert alert-danger text-center"><i class="bi bi-exclamation-triangle-fill me-2"></i><?= $erreur ?></div>
           <?php elseif ($success): ?>
-            <div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i><?= $success ?></div>
+            <div class="alert alert-success text-center"><i class="bi bi-check-circle-fill me-2"></i><?= $success ?></div>
           <?php endif; ?>
 
-          <form method="POST">
-            <div class="mb-3">
-              <label for="nom" class="form-label">Nom du secteur</label>
-              <input type="text" name="nom" id="nom" class="form-control" required>
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+              <form method="POST" class="p-4 shadow-sm bg-white rounded">
+                <div class="mb-3">
+                  <label for="nom" class="form-label">Nom du secteur</label>
+                  <input type="text" name="nom" id="nom" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description du secteur</label>
+                  <textarea name="description" id="description" class="form-control" rows="3" placeholder="Décrivez brièvement ce secteur..."></textarea>
+                </div>
+              <div class="d-flex justify-content-between flex-wrap gap-2">
+                  <a href="liste_secteur.php" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left me-1"></i> Retour
+                  </a>
+                  <button type="submit" class="btn btn-accent">
+                    <i class="bi bi-plus-circle me-1"></i> Ajouter
+                  </button>
+                </div>
+              </form>
             </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description du secteur</label>
-              <textarea name="description" id="description" class="form-control" rows="3" placeholder="Décrivez brièvement ce secteur..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-accent">
-              <i class="bi bi-plus-circle me-1"></i> Ajouter
-            </button>
-            <a href="liste_secteur.php" class="btn btn-outline-secondary ms-2">
-              <i class="bi bi-arrow-left me-1"></i> Retour
-            </a>
-          </form>
+          </div>
         </div>
       </main>
       <?php include_once '../../includes/footer.php'; ?>

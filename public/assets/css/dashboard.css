@@ -1,92 +1,147 @@
-:root {
-      --color-primary: #1F2A44;
-      --color-accent: #FF9800;
-      --color-bg: #F5F1EB;
-      --color-text: #333333;
-      --color-white: #ffffff;
-      --color-muted: #6c757d;
-      --color-hover: #f0f0f0;
-      --font-main: 'Poppins', sans-serif;
-    }
+  :root {
+    --color-primary: #1F2A44;
+    --color-accent: #FF9800;
+    --color-bg: #F5F1EB;
+    --color-text: #333333;
+    --color-white: #ffffff;
+    --color-muted: #6c757d;
+    --color-hover: #f0f0f0;
+    --font-main: 'Poppins', sans-serif;
+  }
 
-    body {
-      font-family: var(--font-main);
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      overflow-x: hidden;
-      padding-top: 78px;
-    }
+  body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+    margin: 0;
+    padding-top: 78px;
+  }
 
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 55px;
+    left: -260px;
+    width: 220px;
+    height: 100vh;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 4rem 1rem;
+    transition: left 0.3s ease;
+    z-index: 1050;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .sidebar h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-weight: bold;
+  }
+
+  .sidebar a {
+    display: block;
+    color: var(--color-white);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease, padding-left 0.3s ease;
+  }
+
+  .sidebar a:hover {
+    background-color: #2e3b5c;
+    color: var(--color-white);
+    padding-left: 14px;
+  }
+
+  /* Menu button */
+  #menuToggle {
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    z-index: 1100;
+    background-color: transparent;
+    /*background-color: var(--color-accent);*/
+    color:  black;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  #menuToggle:hover {
+    background-color: #e68900;
+    color: #ffffff;
+  }
+
+  #menuToggle.active{
+    color: #ffffff;
+  }
+
+  /* Main content */
+  .main-content {
+    margin-left: 0;
+    padding: 2rem;
+    transition: margin-left 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
     .sidebar {
-      width: 240px;
-      background-color: var(--color-primary);
-      color: var(--color-white);
-      position: fixed;
-      top: 0;
-      bottom: 0;
       left: 0;
-      padding: 2rem 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .sidebar h4 {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: var(--color-accent);
-    }
-
-    .sidebar a {
-      display: block;
-      color: var(--color-white);
-      text-decoration: none;
-      margin-bottom: 1rem;
-      transition: background 0.2s ease;
-    }
-
-    .sidebar a:hover {
-      background-color: var(--color-hover);
-      color: var(--color-primary);
-      padding-left: 10px;
     }
 
     .main-content {
-      margin-left: 240px;
-      padding: 2rem;
-      transition: margin 0.3s ease;
+      margin-left: 260px;
     }
 
-    .card {
-      border: none;
-      border-radius: 10px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    #menuToggle {
+      display: none;
     }
+  }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
+  /* Dashboard header */
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
 
-    .btn-accent {
-      background-color: var(--color-accent);
-      color: var(--color-white);
-    }
+  .dashboard-header h2 {
+    font-weight: 600;
+  }
 
-    .btn-accent:hover {
-      background-color: #e68a00;
-      color: var(--color-white);
-    }
+  .dashboard-header small {
+    color: var(--color-muted);
+  }
 
-    .dashboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
+  /* Cards */
+  .card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    .dashboard-header h2 {
-      font-weight: 600;
-    }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
 
-    .dashboard-header small {
-      color: var(--color-muted);
-    }
+  /* Accent buttons */
+  .btn-accent {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+  }
+
+  .btn-accent:hover {
+    background-color: #e68900;
+    color: var(--color-white);
+  }

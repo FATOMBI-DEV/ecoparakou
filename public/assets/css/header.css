@@ -1,39 +1,43 @@
-:root {
-  --color-primary: #1F2A44;
-  --color-accent: #FF9800;
-  --color-bg: #F5F1EB;
-  --color-text: #333333;
-  --font-main: 'Poppins', sans-serif;
-}
+  :root {
+    --color-primary: #1F2A44;
+    --color-accent: #FF9800;
+    --color-bg: #F5F1EB;
+    --color-text: #333333;
+    --font-main: 'Poppins', sans-serif;
+  }
 
-body {
-  font-family: var(--font-main);
- /* padding-top: 70px; /* pour compenser le header fixe */
-}
+  body {
+    font-family: var(--font-main);
+  /* padding-top: 70px; /* pour compenser le header fixe */
+  }
 
-.navbar {
-  background-color: var(--color-primary) !important;
-}
+  .navbar {
+    background-color: var(--color-primary) !important;
+  }
 
-.navbar-brand span {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
+  .navbar-brand span {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
 
-.nav-link:hover,
-.nav-link:focus {
-  background-color: var(--color-accent);
-  color: #fff !important;
-  border-radius: 4px;
-}
+  .nav-link:hover,
+  .nav-link:focus {
+    background-color: var(--color-accent);
+    color: #fff !important;
+    border-radius: 4px;
+  }
 
-.dropdown-menu {
-  font-family: var(--font-main);
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+  .dropdown-menu {
+    font-family: var(--font-main);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
 
-.dropdown-item:hover {
-  background-color: var(--color-accent);
-  color: #fff;
-}
+  .dropdown-item:hover {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .input-error {
+    border: 2px solid red !important;
+  }

@@ -1,9 +1,7 @@
 <?php
 
-// Définition des constantes globales du projet
-
 // === Informations générales ===
-define('SITE_NAME', 'Eco Parakou');
+define('SITE_NAME', 'EcoParakou');
 define('SITE_DESCRIPTION', 'Annuaire des entreprises de Parakou');
 define('SITE_AUTHOR', 'Stagiaires-Light');
 
@@ -22,7 +20,7 @@ define('COLOR_TEXT', '#333333');        // Texte principal
 // === Email de contact principal ===
 define('EMAIL_ADMIN', 'akomedi533@gmail.com');
 
-define('BASE_URL', 'http://192.168.24.74/ecoparakou/');
+define('BASE_URL', 'http://192.168.201.74/ecoparakou/');
 
 // === Paramètres techniques ===
 define('MAX_LOGO_SIZE_MB', 2); // taille max du logo en Mo

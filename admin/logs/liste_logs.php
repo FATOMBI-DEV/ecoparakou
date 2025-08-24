@@ -32,7 +32,7 @@
       return preg_match('/^\d{4}-\d{2}-\d{2}$/', $date);
     }
 
-    // Construction dynamique de la requête
+    // Construction de la requête
     $conditions = [];
     $params = [];
     $types = '';
@@ -42,27 +42,30 @@
       $params[] = $filtre_utilisateur;
       $types .= 'i';
     }
+
     if ($filtre_table !== '') {
       $conditions[] = 'l.table_cible = ?';
       $params[] = $filtre_table;
       $types .= 's';
     }
+
     if ($filtre_date_debut !== '' && est_date_valide($filtre_date_debut)) {
       $conditions[] = 'l.date_action >= ?';
       $params[] = $filtre_date_debut . ' 00:00:00';
       $types .= 's';
     }
+
     if ($filtre_date_fin !== '' && est_date_valide($filtre_date_fin)) {
       $conditions[] = 'l.date_action <= ?';
       $params[] = $filtre_date_fin . ' 23:59:59';
       $types .= 's';
     }
 
-    $sql = "
-      SELECT l.*, u.nom AS utilisateur
+    $sql = "SELECT l.*, u.nom AS utilisateur
       FROM logs_actions l
       INNER JOIN utilisateurs u ON u.id = l.utilisateur_id
     ";
+
     if (!empty($conditions)) {
       $sql .= ' WHERE ' . implode(' AND ', $conditions);
     }
@@ -74,6 +77,7 @@
     }
     $stmt->execute();
     $result = $stmt->get_result();
+
   ?>
 
   <!DOCTYPE html>
@@ -86,16 +90,24 @@
     </head>
     <body>
       <?php include_once '../../includes/header.php'; ?>
-      <main>
-        <div class="container mt-4">
-          <h3 class="mb-4 text-primary">
+      <main class="flex-grow-1">
+        <div class="container pt-5 mt-4" style="font-family: var(--font-main); background-color: var(--color-bg); color: var(--color-text);">
+          
+          <div class="d-flex justify-content-start mb-3">
+            <a href="../dashboard.php" class="btn btn-secondary">
+              <i class="bi bi-arrow-left-circle me-1"></i> Retour
+            </a>
+          </div>
+
+          <!-- Titre -->
+          <h3 class="text-center mb-4 text-primary" style="color: var(--color-primary);">
             <i class="bi bi-journal-text me-2"></i> Historique des actions
           </h3>
 
           <!-- Formulaire de filtres -->
           <form method="get" class="row g-3 mb-4">
-            <div class="col-md-3">
-              <label><i class="bi bi-person-fill me-1"></i> Utilisateur</label>
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label"><i class="bi bi-person-fill me-1"></i> Utilisateur</label>
               <select name="utilisateur" class="form-select">
                 <option value="">Tous</option>
                 <?php
@@ -108,20 +120,20 @@
                 <?php endwhile; ?>
               </select>
             </div>
-            <div class="col-md-3">
-              <label><i class="bi bi-table me-1"></i> Table cible</label>
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label"><i class="bi bi-table me-1"></i> Table cible</label>
               <input type="text" name="table" class="form-control" value="<?= htmlspecialchars($filtre_table) ?>">
             </div>
-            <div class="col-md-3">
-              <label><i class="bi bi-calendar-date me-1"></i> Date début</label>
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label"><i class="bi bi-calendar-date me-1"></i> Date début</label>
               <input type="date" name="date_debut" class="form-control" value="<?= htmlspecialchars($filtre_date_debut) ?>">
             </div>
-            <div class="col-md-3">
-              <label><i class="bi bi-calendar-date me-1"></i> Date fin</label>
+            <div class="col-md-6 col-lg-3">
+              <label class="form-label"><i class="bi bi-calendar-date me-1"></i> Date fin</label>
               <input type="date" name="date_fin" class="form-control" value="<?= htmlspecialchars($filtre_date_fin) ?>">
             </div>
             <div class="col-12 text-end">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn me-2 btn-accent">
                 <i class="bi bi-funnel-fill me-1"></i> Filtrer
               </button>
               <a href="liste_logs.php" class="btn btn-secondary">
@@ -130,39 +142,41 @@
             </div>
           </form>
 
-          <!-- Tableau des logs -->
-          <table class="table table-bordered table-hover bg-white">
-            <thead class="table-light">
-              <tr>
-                <th><i class="bi bi-hash"></i></th>
-                <th><i class="bi bi-person-fill"></i> Utilisateur</th>
-                <th><i class="bi bi-pencil-fill"></i> Action</th>
-                <th><i class="bi bi-table"></i> Table</th>
-                <th><i class="bi bi-key-fill"></i> ID cible</th>
-                <th><i class="bi bi-clock-fill"></i> Date</th>
-                <th><i class="bi bi-eye-fill"></i> Détails</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php while ($log = $result->fetch_assoc()): ?>
+          <!-- Tableau -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover bg-white align-middle">
+              <thead class="table-light">
                 <tr>
-                  <td><?= $log['id'] ?></td>
-                  <td><?= htmlspecialchars($log['utilisateur'] ?? '') ?></td>
-                  <td><?= htmlspecialchars($log['action']) ?></td>
-                  <td><?= htmlspecialchars($log['table_cible']) ?></td>
-                  <td><?= $log['cible_id'] ?></td>
-                  <td><?= date('d/m/Y H:i', strtotime($log['date_action'])) ?></td>
-                  <td>
-                    <a href="details_logs.php?id=<?= $log['id'] ?>" class="btn btn-sm btn-outline-info">
-                      <i class="bi bi-search me-1"></i> Voir
-                    </a>
-                  </td>
+                  <th><i class="bi bi-hash"></i></th>
+                  <th><i class="bi bi-person-fill"></i> Utilisateur</th>
+                  <th><i class="bi bi-pencil-fill"></i> Action</th>
+                  <th><i class="bi bi-table"></i> Table</th>
+                  <th><i class="bi bi-key-fill"></i> ID cible</th>
+                  <th><i class="bi bi-clock-fill"></i> Date</th>
+                  <th><i class="bi bi-eye-fill"></i> Détails</th>
                 </tr>
-              <?php endwhile; ?>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <?php while ($log = $result->fetch_assoc()): ?>
+                  <tr>
+                    <td><?= $log['id'] ?></td>
+                    <td><?= htmlspecialchars($log['utilisateur'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($log['action']) ?></td>
+                    <td><?= htmlspecialchars($log['table_cible']) ?></td>
+                    <td><?= $log['cible_id'] ?></td>
+                    <td><?= date('d/m/Y H:i', strtotime($log['date_action'])) ?></td>
+                    <td>
+                      <a href="details_logs.php?id=<?= $log['id'] ?>" class="btn btn-sm btn-outline-info">
+                        <i class="bi bi-search me-1"></i> Voir
+                      </a>
+                    </td>
+                  </tr>
+                <?php endwhile; ?>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </main>
+      </main>  
       <?php include_once '../../includes/footer.php'; ?>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

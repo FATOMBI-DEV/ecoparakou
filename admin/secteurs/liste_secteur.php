@@ -24,8 +24,7 @@
     }
 
     // Récupération des secteurs avec nombre d'entreprises
-    $query = "
-      SELECT s.id, s.nom, s.slug, s.ordre, COUNT(e.id) AS nb_entreprises
+    $query = "SELECT s.id, s.nom, s.slug, s.ordre, COUNT(e.id) AS nb_entreprises
       FROM secteurs s
       LEFT JOIN entreprises e ON e.secteur_id = s.id
       GROUP BY s.id
@@ -48,47 +47,58 @@
 
       <div class="container py-5">
         <?php if (isset($_GET['success'])): ?>
-          <div class="alert alert-success">✅ Secteur supprimé avec succès.</div>
+          <div class="alert alert-success">Secteur supprimé avec succès.</div>
         <?php endif; ?>
 
-        <h2 class="mb-4">
+        <h2 class="mb-4 text-center text-primary">
           <i class="bi bi-folder me-2"></i> Gestion des secteurs
         </h2>
 
         <?php if (in_array($role, ['admin', 'moderateur'])): ?>
-          <a href="ajouter_secteur.php" class="btn btn-accent mb-3">➕ Ajouter un secteur</a>
+          <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+            <a href="../dashboard.php" class="btn btn-secondary mb-2">
+              <i class="bi bi-arrow-left-circle me-1"></i>Retour
+            </a>
+            <a href="ajouter_secteur.php" class="btn btn-accent mb-2">
+              <i class="bi bi-person-plus me-1"></i> Ajouter un secteur
+            </a>
+          </div>
         <?php endif; ?>
 
-        <table class="table table-bordered table-hover align-middle">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Slug</th>
-              <th>Ordre</th>
-              <th>Entreprises</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php while ($s = $secteurs->fetch_assoc()): ?>
-              <tr id="secteur-row-<?= $s['id'] ?>">
-                <td><?= htmlspecialchars($s['nom']) ?></td>
-                <td><?= htmlspecialchars($s['slug']) ?></td>
-                <td><?= $s['ordre'] ?></td>
-                <td><span class="badge bg-secondary"><?= $s['nb_entreprises'] ?></span></td>
-                <td>
-                  <a href="modifier_secteur.php?id=<?= $s['id'] ?>" class="btn btn-sm btn-outline-primary">Modifier</a>
-                  <?php if ($role === 'admin'): ?>
-                    <button class="btn btn-sm btn-outline-danger ms-1"
-                      onclick="confirmerSuppression(<?= $s['id'] ?>, '<?= addslashes($s['nom']) ?>', <?= $s['nb_entreprises'] ?>)">
-                      Supprimer
-                    </button>
-                  <?php endif; ?>
-                </td>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Slug</th>
+                <th>Ordre</th>
+                <th>Entreprises</th>
+                <th>Actions</th>
               </tr>
-            <?php endwhile; ?>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <?php while ($s = $secteurs->fetch_assoc()): ?>
+                <tr id="secteur-row-<?= $s['id'] ?>">
+                  <td><?= htmlspecialchars($s['nom']) ?></td>
+                  <td><?= htmlspecialchars($s['slug']) ?></td>
+                  <td><?= $s['ordre'] ?></td>
+                  <td><span class="badge bg-secondary"><?= $s['nb_entreprises'] ?></span></td>
+                  <td>
+                    <div class="d-flex flex-wrap gap-2">
+                      <a href="modifier_secteur.php?id=<?= $s['id'] ?>" class="btn btn-sm btn-outline-primary">Modifier</a>
+                      <?php if ($role === 'admin'): ?>
+                        <button class="btn btn-sm btn-outline-danger"
+                          onclick="confirmerSuppression(<?= $s['id'] ?>, '<?= addslashes($s['nom']) ?>', <?= $s['nb_entreprises'] ?>)">
+                          Supprimer
+                        </button>
+                      <?php endif; ?>
+                    </div>
+                  </td>
+                </tr>
+              <?php endwhile; ?>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- Modal de confirmation -->

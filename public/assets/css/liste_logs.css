@@ -1,0 +1,126 @@
+  :root {
+    --color-primary: #1F2A44;
+    --color-accent: #FF9800;
+    --color-bg: #F5F1EB;
+    --color-text: #333333;
+    --color-white: #ffffff;
+    --color-muted: #6c757d;
+    --font-main: 'Poppins', sans-serif;
+  }
+
+  /* Base */
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Titres */
+  h1, h2, h3, h4, h5 {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  /* Boutons */
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #162033;
+  }
+
+  .btn-accent {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+  }
+
+  .btn-accent:hover {
+    background-color: #e68900;
+  }
+
+  .btn-outline-info {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .btn-outline-info:hover {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  /* Formulaires */
+  label {
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .form-control,
+  .form-select {
+    border-radius: 6px;
+    border: 1px solid var(--color-muted);
+  }
+
+  /* Tableaux */
+  .table {
+    font-size: 0.95rem;
+  }
+
+  .table th,
+  .table td {
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .table thead th {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  /* Icônes */
+  .bi {
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    h3 {
+      font-size: 1.4rem;
+      text-align: center;
+    }
+
+    .form-control,
+    .form-select {
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+    }
+
+    .table th,
+    .table td {
+      font-size: 0.85rem;
+      padding: 0.5rem;
+    }
+
+    .table-responsive .btn {
+      width: 100%;
+      margin-bottom: 6px;
+    }
+  }
+  main {
+    flex: 1;
+  }

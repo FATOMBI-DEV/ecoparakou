@@ -35,17 +35,18 @@
 
     //Nouvelle fonction modulaire de log
     function log_action($utilisateur_id, $action, $table_cible, $cible_id = null) {
-    global $mysqli;
-    $action = htmlspecialchars($action);
-    $table_cible = htmlspecialchars($table_cible);
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'inconnue';
-    $stmt = $mysqli->prepare("INSERT INTO logs_actions (utilisateur_id, action, table_cible, cible_id, date_action)
-        VALUES (?, ?, ?, ?, NOW())
-    ");
-    $stmt->bind_param("issi", $utilisateur_id, $action, $table_cible, $cible_id);
-    $stmt->execute();
-    $stmt->close();
+        global $mysqli;
+        $action = htmlspecialchars($action);
+        $table_cible = htmlspecialchars($table_cible);
+        $ip = $_SERVER['REMOTE_ADDR'] ?? 'inconnue';
+        $stmt = $mysqli->prepare("INSERT INTO logs_actions (utilisateur_id, action, table_cible, cible_id, date_action)
+            VALUES (?, ?, ?, ?, NOW())
+        ");
+        $stmt->bind_param("issi", $utilisateur_id, $action, $table_cible, $cible_id);
+        $stmt->execute();
+        $stmt->close();
     }
+    
     function notifierAction($type, $contenu, $lien = '', $emailCible = null) {
         global $mysqli;
 

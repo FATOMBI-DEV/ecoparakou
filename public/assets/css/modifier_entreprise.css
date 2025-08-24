@@ -1,23 +1,53 @@
-body {
-    
-    padding-top:55px ;
-}
 
-.container {
-    max-width: 960px;
-    margin-top: 40px;
-}
+    :root {
+        --color-primary: #1F2A44;
+        --color-accent: #FF9800;
+        --color-bg: #F5F1EB;
+        --color-text: #333333;
+        --color-white: #ffffff;
+        --color-muted: #6c757d;
+        --font-main: 'Poppins', sans-serif;
+    }
 
-.logo-preview {
-    max-height: 80px;
-    border-radius: 4px;
-    margin-top: 5px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.2);
-}
+    body {
+        
+        padding-top:55px ;
+    }
 
-.form-section {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
+    .btn-accent{
+        background-color: var(--color-accent);
+        color: #ffffff;
+    }
+
+    .btn-accent:hover{
+        background-color: #e67e00;
+        color: #ffffff;
+    }
+
+    .container {
+        max-width: 960px;
+        margin-top: 40px;
+    }
+
+    .logo-preview {
+        max-height: 80px;
+        border-radius: 4px;
+        margin-top: 5px;
+        box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    }
+
+    .form-section {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .logo-preview {
+        max-width: 150px;
+        max-height: 150px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        border-radius: 5px;
+    }

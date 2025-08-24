@@ -5,8 +5,8 @@
         $page_title = "Détail du log";
 
         if (!isset($_SESSION['admin_id'])) {
-        header("Location: ../login.php");
-        exit;
+            header("Location: ../login.php");
+            exit;
         }
 
         $stmt = $mysqli->prepare("SELECT role FROM utilisateurs WHERE id = ?");
@@ -17,24 +17,24 @@
         // Récupération de l'ID
         $id = $_GET['id'] ?? null;
         if (!$id || !is_numeric($id)) {
-        die("ID invalide.");
+            die("ID invalide.");
         }
 
         // Requête du log
-        $stmt = $mysqli->prepare("
-        SELECT l.*, u.nom AS utilisateur
-        FROM logs_actions l
-        LEFT JOIN utilisateurs u ON u.id = l.utilisateur_id
-        WHERE l.id = ?
-        LIMIT 1
+        $stmt = $mysqli->prepare("SELECT l.*, u.nom AS utilisateur
+            FROM logs_actions l
+            LEFT JOIN utilisateurs u ON u.id = l.utilisateur_id
+            WHERE l.id = ?
+            LIMIT 1
         ");
+
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $log = $result->fetch_assoc();
 
         if (!$log) {
-        die("Log introuvable.");
+            die("Log introuvable.");
         }
     ?>
 
@@ -48,26 +48,54 @@
         </head>
         <body>
             <?php include_once '../../includes/header.php'; ?>
-            <main>
-                <div class="container mt-4">
-                    <h3 class="mb-4 text-primary">Détail du log #<?= $log['id'] ?></h3>
+            <main class="flex-grow-1">
+                <div class="container py-5">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0">Détail d'action #<?= $log['id'] ?></h3>
+                        </div>
 
-                    <table class="table table-bordered bg-white">
-                        <tr><th>ID</th><td><?= $log['id'] ?></td></tr>
-                        <tr><th>Utilisateur</th><td><?= htmlspecialchars($log['utilisateur'] ?? '—') ?></td></tr>
-                        <tr><th>Action</th><td><?= htmlspecialchars($log['action']) ?></td></tr>
-                        <tr><th>Table cible</th><td><?= htmlspecialchars($log['table_cible']) ?></td></tr>
-                        <tr><th>ID cible</th><td><?= $log['cible_id'] ?></td></tr>
-                        <tr><th>Date</th><td><?= date('d/m/Y H:i:s', strtotime($log['date_action'])) ?></td></tr>
-                    </table>
+                        <div class="card-body">
+                            <table class="table table-striped table-bordered mb-4">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">ID</th>
+                                        <td><?= $log['id'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Utilisateur</th>
+                                        <td><?= htmlspecialchars($log['utilisateur'] ?? '—') ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Action</th>
+                                        <td><?= htmlspecialchars($log['action']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Table cible</th>
+                                        <td><?= htmlspecialchars($log['table_cible']) ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">ID cible</th>
+                                        <td><?= $log['cible_id'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date</th>
+                                        <td><?= date('d/m/Y H:i:s', strtotime($log['date_action'])) ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                    <?php if ($admin['role'] === 'admin'): ?>
-                        <a href="supprimer_log.php?id=<?= $log['id'] ?>" class="btn btn-danger"
-                            onclick="return confirm('Confirmer la suppression de ce log ?')">
-                            Supprimer
-                        </a>
-                    <?php endif; ?>
-                    <a href="liste_logs.php" class="btn btn-secondary">← Retour à la liste</a>
+                            <div class="d-flex gap-2">
+                                <?php if ($admin['role'] === 'admin'): ?>
+                                    <a href="supprimer_log.php?id=<?= $log['id'] ?>" class="btn btn-danger"
+                                    onclick="return confirm('Confirmer la suppression de ce log ?')">
+                                        Supprimer
+                                    </a>
+                                <?php endif; ?>
+                                <a href="liste_logs.php" class="btn btn-secondary">← Retour à la liste</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
             <?php include_once '../../includes/footer.php'; ?>

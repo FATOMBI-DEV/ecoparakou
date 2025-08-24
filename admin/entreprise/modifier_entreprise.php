@@ -110,108 +110,132 @@
             <link rel="stylesheet" href="../../public/assets/css/header.css">
             <link rel="stylesheet" href="../../public/assets/css/footer.css">
         </head>
-    <body>
-<?php include_once '../../includes/header.php'; ?>
-    <div class="container">
-    <h3 class="mb-4 text-primary"><i class="bi bi-pencil-square me-2"></i>Modifier l’entreprise</h3>
+        <body>
+            <?php include_once '../../includes/header.php'; ?>
+            <div class="container">
+                <h3 class="mb-4 text-primary"><i class="bi bi-pencil-square me-2"></i>Modifier l’entreprise</h3>
 
-    <div class="form-section">
-        <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate id="form-modif">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Nom</label>
-            <input type="text" name="nom" class="form-control" value="<?= htmlspecialchars($entreprise['nom']) ?>" required>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Slug</label>
-            <input type="text" name="slug" class="form-control" value="<?= htmlspecialchars($entreprise['slug']) ?>" required>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Email contact</label>
-            <input type="email" name="email_contact" class="form-control" value="<?= htmlspecialchars($entreprise['email_contact']) ?>" required>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Téléphone</label>
-            <input type="text" name="telephone" class="form-control" value="<?= htmlspecialchars($entreprise['telephone']) ?>" required>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Secteur</label>
-            <select name="secteur_id" class="form-select" required>
-                <?php
-                $secteurs = $mysqli->query("SELECT id, nom FROM secteurs ORDER BY nom");
-                while ($s = $secteurs->fetch_assoc()) {
-                $selected = ($s['id'] == $entreprise['secteur_id']) ? 'selected' : '';
-                echo "<option value='{$s['id']}' $selected>{$s['nom']}</option>";
-                }
-                ?>
-            </select>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Adresse</label>
-            <input type="text" name="adresse" class="form-control" value="<?= htmlspecialchars($entreprise['adresse']) ?>" required>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Quartier</label>
-            <input type="text" name="quartier" class="form-control" value="<?= htmlspecialchars($entreprise['quartier']) ?>" required>
-            </div>
-        <div class="col-md-6 mb-3">
-                <label for="localisation" class="form-label">Localisation (lien Google Maps)</label>
-                <input
-                    type="url"
-                    name="localisation"
-                    id="localisation"
-                    class="form-control"
-                    value="<?= htmlspecialchars($entreprise['localisation']) ?>"
-                    placeholder="https://maps.google.com/..."
-                >
-                <div class="invalid-feedback">
-                    Veuillez entrer une URL valide (ex: https://maps.google.com/...).
+                <div class="form-section">
+                    <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate id="form-modif">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                            <label class="form-label">Nom</label>
+                            <input type="text" name="nom" class="form-control" value="<?= htmlspecialchars($entreprise['nom']) ?>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                            <label class="form-label">Slug</label>
+                            <input type="text" name="slug" class="form-control" value="<?= htmlspecialchars($entreprise['slug']) ?>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                            <label class="form-label">Email contact</label>
+                            <input type="email" name="email_contact" class="form-control" value="<?= htmlspecialchars($entreprise['email_contact']) ?>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                            <label class="form-label">Téléphone</label>
+                            <input type="text" name="telephone" class="form-control" value="<?= htmlspecialchars($entreprise['telephone']) ?>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Secteur</label>
+                                <select name="secteur_id" class="form-select" required>
+                                    <?php
+                                    $secteurs = $mysqli->query("SELECT id, nom FROM secteurs ORDER BY nom");
+                                    while ($s = $secteurs->fetch_assoc()) {
+                                    $selected = ($s['id'] == $entreprise['secteur_id']) ? 'selected' : '';
+                                    echo "<option value='{$s['id']}' $selected>{$s['nom']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                            <label class="form-label">Adresse</label>
+                            <input type="text" name="adresse" class="form-control" value="<?= htmlspecialchars($entreprise['adresse']) ?>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                            <label class="form-label">Quartier</label>
+                            <input type="text" name="quartier" class="form-control" value="<?= htmlspecialchars($entreprise['quartier']) ?>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="localisation" class="form-label">Localisation (lien Google Maps)</label>
+                                <input
+                                    type="url"
+                                    name="localisation"
+                                    id="localisation"
+                                    class="form-control"
+                                    value="<?= htmlspecialchars($entreprise['localisation']) ?>"
+                                    placeholder="https://maps.google.com/..."
+                                >
+                                <div class="invalid-feedback">
+                                    Veuillez entrer une URL valide (ex: https://maps.google.com/...).
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="description" class="form-control" rows="4" required><?= htmlspecialchars($entreprise['description']) ?></textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Logo</label>
+                                <input type="file" name="logo" class="form-control" onchange="previewLogo(this)">
+                                <img id="newLogoPreview" class="logo-preview d-none" alt="Nouveau logo">
+                                
+                                <?php if ($entreprise['logo']) : ?>
+                                    <img src="../../public/uploads/<?= $entreprise['logo'] ?>" alt="Logo actuel" class="logo-preview" id="oldLogoPreview">
+                                <?php endif; ?>
+                            </div>
+                            
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="liste_entreprise.php" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left-circle me-1"></i>Retour
+                            </a>
+                            <button type="submit" class="btn btn-accent">
+                            <i class="bi bi-check-circle me-1"></i>Enregistrer
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="col-md-12 mb-3">
-            <label class="form-label">Description</label>
-            <textarea name="description" class="form-control" rows="4" required><?= htmlspecialchars($entreprise['description']) ?></textarea>
-            </div>
-            <div class="col-md-6 mb-3">
-            <label class="form-label">Logo</label>
-            <input type="file" name="logo" class="form-control">
-            <?php if ($entreprise['logo']) : ?>
-                <img src="../../uploads/logos/<?= $entreprise['logo'] ?>" alt="Logo actuel" class="logo-preview">
-            <?php endif; ?>
-            </div>
+
             
-        </div>
+            <?php include_once '../../includes/footer.php'; ?>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
 
-        <div class="d-flex justify-content-between mt-4">
-            <a href="entreprises.php" class="btn btn-outline-secondary">
-            <i class="bi bi-arrow-left-circle me-1"></i>Retour
-            </a>
-            <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle me-1"></i>Enregistrer
-            </button>
-        </div>
-        </form>
-    </div>
-    </div>
+                (() => {
+                'use strict';
+                const forms = document.querySelectorAll('.needs-validation');
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                    }, false);
+                });
+                })();
 
-    <!-- Bootstrap JS -->
-     <?php include_once '../../includes/footer.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    (() => {
-    'use strict';
-    const forms = document.querySelectorAll('.needs-validation');
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-        }, false);
-    });
-    })();
-    </script>
+            
+                function previewLogo(input) {
+                    const newPreview = document.getElementById('newLogoPreview');
+                    const oldPreview = document.getElementById('oldLogoPreview');
 
-    </body>
+                    if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        newPreview.src = e.target.result;
+                        newPreview.classList.remove('d-none');
+
+                        // Masquer l'ancien logo s'il existe
+                        if (oldPreview) {
+                        oldPreview.style.display = 'none';
+                        }
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+            </script>
+
+        </body>
     </html>

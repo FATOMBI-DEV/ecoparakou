@@ -34,6 +34,7 @@
       <link rel="stylesheet" href="assets/css/header.css">
       <link rel="stylesheet" href="assets/css/secteurs.css">
       <link rel="stylesheet" href="assets/css/footer.css">
+      
     </head>
 
     <body>
@@ -41,7 +42,10 @@
 
       <main>
         <div class="container mt-5">
-          <h2 class="mb-4 text-primary">Entreprises du secteur : <strong><?= htmlspecialchars($secteur['nom']) ?></strong></h2>
+          <h2 class="section-title">
+            <i class="bi bi-building me-2 text-accent"></i>
+            Entreprises du secteur : <strong><?= htmlspecialchars($secteur['nom']) ?></strong>
+          </h2>
 
           <div class="row g-3">
             <?php

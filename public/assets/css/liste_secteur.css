@@ -1,23 +1,47 @@
-body {
+  
+  body {
     background-color: #F5F1EB;
     font-family: 'Poppins', sans-serif;
     padding-top: 78px;
-}
-.table th {
+  }
+  .table th {
     background-color: #1F2A44;
     color: #ffffff;
-}
+  }
 
-.btn-accent {
+  .btn-accent {
     background-color: #FF9800;
     color: #ffffff;
-}
+  }
 
-.btn-accent:hover {
+  .btn-accent:hover {
     background-color: #e68900;
-}
+  }
 
-.fade-out {
+  .fade-out {
     opacity: 0; transition:
     opacity 0.5s ease-out;
-}
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+  }
+
+  td .btn {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 576px) {
+    td .d-flex {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    td .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+

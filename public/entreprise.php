@@ -1,5 +1,5 @@
   <?php
-    $page_title = "Fiche entreprise";
+    $page_title = "Fiche d'entreprise";
     include_once '../includes/db.php';
 
     $slug = trim($_GET['slug'] ?? '');
@@ -53,10 +53,15 @@
             <img src="<?= $logo ?>" alt="<?= htmlspecialchars($e['nom']) ?>" class="entreprise-logo">
             <div class="entreprise-nom"><?= htmlspecialchars($e['nom']) ?></div>
             <div class="entreprise-secteur"><i class="bi bi-diagram-3-fill me-1"></i><?= htmlspecialchars($e['secteur_nom']) ?></div>
-            <div class="info-item"><i class="bi bi-geo-alt-fill"></i><?= htmlspecialchars($e['quartier']) ?></div>
+            <div class="info-item"><i class="bi bi-signpost-fill"></i><?= htmlspecialchars($e['quartier']) ?></div>
             <div class="info-item"><i class="bi bi-house-door-fill"></i><?= htmlspecialchars($e['adresse']) ?></div>
             <div class="info-item"><i class="bi bi-telephone-fill"></i><?= htmlspecialchars($e['telephone']) ?></div>
             <div class="info-item"><i class="bi bi-envelope-fill"></i><?= htmlspecialchars($e['email_contact']) ?></div>
+            <div class="info-item d-flex flex-wrap align-items-center gap-1">
+  <i class="bi bi-geo-alt-fill text-accent"></i>
+  <span class="text-muted">Parakou, <?= htmlspecialchars($e['quartier']) ?> —</span>
+  <a href="<?= htmlspecialchars($e['localisation']) ?>" target="_blank" rel="noopener noreferrer" class="text-primary text-decoration-underline">Google Maps</a>
+</div>
           </div>
 
           <!-- Carte contenu -->

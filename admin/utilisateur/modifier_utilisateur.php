@@ -39,6 +39,7 @@
       } else {
         $stmt = $mysqli->prepare("UPDATE utilisateurs SET nom = ?, email = ?, role = ? WHERE id = ?");
         $stmt->bind_param("sssi", $nom, $email, $role, $id);
+        
         if ($stmt->execute()) {
           log_action($admin_id, "Modification de l'utilisateur", "utilisateurs", $id);
           header("Location: liste_utilisateur.php?success=" . urlencode("✅ Utilisateur modifié."));

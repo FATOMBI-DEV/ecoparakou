@@ -1,34 +1,136 @@
-:root {
-  --color-primary: #1F2A44;
-  --color-accent: #FF9800;
-  --color-bg: #F5F1EB;
-  --color-text: #333333;
-  --color-white: #ffffff;
-  --color-muted: #6c757d;
-  --color-hover: #f0f0f0;
-  --font-main: 'Poppins', sans-serif;
-}
+  
+  :root {
+    --color-primary: #1F2A44;
+    --color-accent: #FF9800;
+    --color-bg: #F5F1EB;
+    --color-text: #333333;
+    --color-white: #ffffff;
+    --color-muted: #6c757d;
+    --color-hover: #f0f0f0;
+    --font-main: 'Poppins', sans-serif;
+  }
 
-body {
-  margin: 0;
- /* padding: 70px 0 0;*/
-  font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
+  body {
+    margin: 0;
+    /*padding: 70px 0 0;*/
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
 
-header {
-  /*margin-top: 0;*/
-  z-index: 1000;
-}
+  header {
+    /*margin-top: 0;*/
+    z-index: 1000;
+  }
 
-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--color-white);
-  color: var(--color-muted);
-  text-align: center;
-  padding: 1rem 0;
-}
+  footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    color: var(--color-muted);
+    text-align: center;
+    padding: 1rem 0;
+  }
 
+  /* === Loader Overlay === */
+  #loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+
+  /* === Loader Hidden State === */
+  #loader-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* === Loader Container === */
+  .loader-stack {
+    position: relative;
+    width: min(20vw, 100px);
+    height: min(20vw, 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* === Logo Animation === */
+  .loader-logo {
+    width: min(30vw, 90px);
+    z-index: 2;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  /* === Spinner Animation === */
+  .spinner {
+    position: absolute;
+    width: 80%; 
+    height: 80%;
+    border: 2.5px solid var(--color-accent, #3498db);
+    border-top: 2.5px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+  }
+
+  /* === Keyframes === */
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  /* === Responsive: Mobile === */
+  @media (max-width: 576px) {
+    #loader-overlay {
+      background-color: #ffffff;
+    }
+
+    .loader-stack {
+      width: 60px;
+      height: 60px;
+    }
+
+    .loader-logo {
+      width: 50px;
+    }
+
+    .spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+  }
+
+  /* === Responsive: Tablette === */
+  @media (min-width: 577px) and (max-width: 768px) {
+    .loader-stack {
+      width: 80px;
+      height: 80px;
+    }
+
+    .loader-logo {
+      width: 70px;
+    }
+
+    .spinner {
+      width: 55px;
+      height: 55px;
+      border-width: 2.5px;
+    }
+  }

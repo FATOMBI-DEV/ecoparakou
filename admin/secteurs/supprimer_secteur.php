@@ -6,9 +6,9 @@
         header('Content-Type: text/plain');
 
         if (!isset($_SESSION['admin_id'])) {
-        http_response_code(403);
-        echo "Accès refusé.";
-        exit;
+            http_response_code(403);
+            echo "Accès refusé.";
+            exit;
         }
 
         $admin_id = $_SESSION['admin_id'];
@@ -22,17 +22,17 @@
         $stmt->close();
 
         if ($role !== 'admin') {
-        http_response_code(403);
-        echo "Seuls les administrateurs peuvent supprimer un secteur.";
-        exit;
+            http_response_code(403);
+            echo "Seuls les administrateurs peuvent supprimer un secteur.";
+            exit;
         }
 
         // Récupération de l'ID
         $id_secteur = intval($_POST['id'] ?? 0);
         if ($id_secteur <= 0) {
-        http_response_code(400);
-        echo "ID invalide.";
-        exit;
+            http_response_code(400);
+            echo "ID invalide.";
+            exit;
         }
 
         // Récupération du nom du secteur
@@ -40,22 +40,24 @@
         $stmt->bind_param("i", $id_secteur);
         $stmt->execute();
         $stmt->bind_result($nom_secteur);
+
         if (!$stmt->fetch()) {
-        http_response_code(404);
-        echo "Secteur introuvable.";
-        exit;
+            http_response_code(404);
+            echo "Secteur introuvable.";
+            exit;
         }
         $stmt->close();
 
         // Suppression du secteur (les entreprises liées seront supprimées automatiquement si ON DELETE CASCADE est actif)
         $stmt = $mysqli->prepare("DELETE FROM secteurs WHERE id = ?");
         $stmt->bind_param("i", $id_secteur);
+
         if ($stmt->execute()) {
-        log_action($admin_id, "Suppression du secteur : $nom_secteur", "secteurs", $id_secteur);
-        echo "success";
+            log_action($admin_id, "Suppression du secteur : $nom_secteur", "secteurs", $id_secteur);
+            echo "success";
         } else {
-        http_response_code(500);
-        echo "Erreur lors de la suppression.";
+            http_response_code(500);
+            echo "Erreur lors de la suppression.";
         }
         $stmt->close();
     ?>

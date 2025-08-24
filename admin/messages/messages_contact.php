@@ -2,6 +2,7 @@
     require_once '../../includes/db.php';
     require_once '../../includes/session.php';
     $page_title = " Messages reçus";
+
     // Marquage comme traité
     if (isset($_GET['traite']) && is_numeric($_GET['traite'])) {
         $id = intval($_GET['traite']);
@@ -15,8 +16,7 @@
     $search_sql = $search ? "WHERE (nom LIKE '%$search%' OR email LIKE '%$search%' OR sujet LIKE '%$search%')" : '';
 
     // Récupération des messages
-    $messages = $mysqli->query("
-      SELECT id, nom, email, sujet, message, date_envoi, traite
+    $messages = $mysqli->query("SELECT id, nom, email, sujet, message, date_envoi, traite
       FROM messages_contact
       $search_sql
       ORDER BY date_envoi DESC
@@ -37,7 +37,7 @@
 
       <main>
         <div class="container py-5">
-          <h2 class="mb-4"><i class="bi bi-envelope-fill text-primary"></i> Messages reçus</h2>
+          <h2 class="mb-4 text-primary text-center pt-4"><i class="bi bi-envelope-fill"></i> Messages reçus</h2>
 
           <form method="get" class="input-group mb-4">
             <input type="text" name="q" class="form-control" placeholder="Rechercher par nom, email ou sujet..." value="<?= htmlspecialchars($search) ?>">

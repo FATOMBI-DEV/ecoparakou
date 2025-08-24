@@ -1,6 +1,6 @@
   <?php
 
-    $page_title = "Inscription entreprise";
+    $page_title = "Inscription d'entreprise";
     include_once '../includes/constants.php';
     include_once '../includes/db.php';
     include_once '../includes/fonctions.php';

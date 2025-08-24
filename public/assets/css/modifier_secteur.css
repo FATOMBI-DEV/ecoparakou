@@ -1,18 +1,28 @@
-body {
+  
+  body {
     background-color: #F5F1EB;
     font-family: 'Poppins', sans-serif;
     padding-top: 78px;
-}
-.form-control:focus {
+  }
+
+  .form-control:focus {
     border-color: #FF9800;
     box-shadow: 0 0 0 0.2rem rgba(255,152,0,.25);
-}
+  }
 
-.btn-accent {
+  .btn-accent {
     background-color: #FF9800;
     color: #fff;
-}
+    border: none;
+  }
 
-.btn-accent:hover {
+  .btn-accent:hover {
     background-color: #e68900;
-}
+  }
+
+  .form-wrapper {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }

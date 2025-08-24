@@ -1,5 +1,5 @@
   <?php
-    $page_title = "Contact";
+    $page_title = "Contactez EcoParakou";
   ?>
 
   <!DOCTYPE html>
@@ -19,7 +19,7 @@
       <main>
         <div class="contact-wrapper">
           <div class="container">
-            <h2>Contacter notre équipe</h2>
+            <h2 class="text-primary">Contactez notre équipe</h2>
 
             <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
               <div class="contact-message success">

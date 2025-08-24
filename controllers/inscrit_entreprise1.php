@@ -29,12 +29,10 @@
       }
 
       // Préparation
-      $stmt = $mysqli->prepare("
-        INSERT INTO entreprises 
+      $stmt = $mysqli->prepare("INSERT INTO entreprises 
         (nom, slug, email_contact, telephone, secteur_id, adresse, quartier, localisation, description, logo, statut) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ");
-
       // Variables à passer par référence
       $stmt->bind_param(  "ssssissssss",  $nom,  $slug,  $email,  $tel,  $secteur_id,  $adresse,  $quartier,  $localisation,  $description,  $logo,  $statut);
 

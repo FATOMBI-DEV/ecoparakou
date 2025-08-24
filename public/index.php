@@ -25,6 +25,7 @@
       <?php include_once '../includes/meta-head.php'; ?>
       <link rel="stylesheet" href="assets/css/index.css">
       <link rel="stylesheet" href="assets/css/header.css">
+      <link rel="stylesheet" href="assets/css/footer.css">
     </head>
 
     <body>
@@ -43,8 +44,11 @@
           </div>
         </section>
 
-        <!-- Secteurs populaires -->
-        <section class="secteurs-section py-5 bg-light">
+        
+
+        
+          <!-- Secteurs populaires -->
+        <section class="secteurs-section py-5 ">
           <div class="container">
             <h3 class="mb-4 text-primary text-center">Secteurs les plus actifs</h3>
             <div class="row g-4">
@@ -66,10 +70,9 @@
           </div>
         </section>
 
-        <div class="container mt-5">
-
           <!-- Entreprises mises en avant -->
-          <section class="entreprises-section mb-5">
+          <section class="entreprises-section py-5 bg-light">
+             <div class="container">
             <h3 class="mb-4 text-primary text-center">Entreprises récemment validées</h3>
             <div class="row g-3">
               <?php while ($e = $entreprises->fetch_assoc()): ?>
@@ -87,10 +90,11 @@
                 </div>
               <?php endwhile; ?>
             </div>
+            </div>
           </section>
 
           <!-- Statistiques -->
-          <section class="stats-section text-center mb-5">
+          <section class="stats-section text-center py-5">
             <h3 class="mb-4 text-primary">Quelques chiffres</h3>
             <div class="row justify-content-center g-4">
               <div class="col-6 col-md-3">
@@ -114,7 +118,7 @@
             </div>
           </section>
 
-        </div>
+        
       </div>
 
       <?php include_once '../includes/footer.php'; ?>

@@ -72,38 +72,47 @@
       <?php include_once '../../includes/header.php'; ?>
       <main>
         <div class="container py-5">
-          <h2 class="mb-4">
-            <i class="bi bi-pencil-square me-2"></i> Modifier le secteur
-          </h2>
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+              <div class="form-wrapper p-4 rounded shadow-sm">
+                <h2 class="mb-4 text-center text-primary">
+                  <i class="bi bi-pencil-square me-2"></i> Modifier le secteur
+                </h2>
 
-          <?php if ($erreur): ?>
-            <div class="alert alert-danger">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <?= $erreur ?>
-            </div>
-          <?php elseif ($success): ?>
-            <div class="alert alert-success">
-              <i class="bi bi-check-circle-fill me-2"></i>
-              <?= $success ?>
-            </div>
-          <?php endif; ?>
+                <?php if ($erreur): ?>
+                  <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    <?= $erreur ?>
+                  </div>
+                <?php elseif ($success): ?>
+                  <div class="alert alert-success">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <?= $success ?>
+                  </div>
+                <?php endif; ?>
 
-          <form method="POST">
-            <div class="mb-3">
-              <label for="nom" class="form-label">Nom du secteur</label>
-              <input type="text" name="nom" id="nom" class="form-control" value="<?= htmlspecialchars($nom_actuel) ?>" required>
+                <form method="POST">
+                  <div class="mb-3">
+                    <label for="nom" class="form-label">Nom du secteur</label>
+                    <input type="text" name="nom" id="nom" class="form-control" value="<?= htmlspecialchars($nom_actuel) ?>" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="description" id="description" class="form-control" rows="4"><?= htmlspecialchars($description_actuel) ?></textarea>
+                  </div>
+
+                  <div class="d-flex justify-content-between mt-4">
+                    <a href="liste_secteur.php" class="btn btn-secondary">
+                      <i class="bi bi-arrow-left me-1"></i> Retour
+                    </a>
+                    <button type="submit" class="btn btn-accent">
+                      <i class="bi bi-save me-1"></i> Enregistrer
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea name="description" id="description" class="form-control" rows="4"><?= htmlspecialchars($description_actuel) ?></textarea>
-            </div>
-            <button type="submit" class="btn btn-accent">
-              <i class="bi bi-save me-1"></i> Enregistrer
-            </button>
-            <a href="liste_secteur.php" class="btn btn-outline-secondary ms-2">
-              <i class="bi bi-arrow-left me-1"></i> Retour
-            </a>
-          </form>
+          </div>
         </div>
       </main>
       <?php include_once '../../includes/footer.php'; ?>

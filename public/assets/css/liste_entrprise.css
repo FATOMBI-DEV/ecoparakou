@@ -1,35 +1,52 @@
 body {
-    background-color: #F5F1EB;
-    font-family: 'Poppins', sans-serif;
-    padding-top: 55px;
+  background-color: #F5F1EB;
+  font-family: 'Poppins', sans-serif;
+  padding-top: 55px;
 }
 .table thead {
-    background-color: #1F2A44;
-    color: #fff;
+  background-color: #1F2A44;
+  color: #fff;
 }
 
 .badge-valide { 
-    background-color: #198754; 
+  background-color: #198754; 
 }
 
 .badge-rejete { 
-    background-color: #dc3545; 
+  background-color: #dc3545; 
 }
 
 .badge-attente { 
-    background-color: #ffc107; 
-    color: #333; 
+  background-color: #ffc107; 
+  color: #333; 
 }
 
 .badge-suspendu { 
-    background-color: #6c757d; 
+  background-color: #6c757d; 
 }
 
 .btn-accent { 
-    background-color: #FF9800; 
-    color: #fff; 
+  background-color: #FF9800; 
+  color: #fff; 
 }
 
 .btn-accent:hover { 
-    background-color: #e68900; 
+  background-color: #e68900; 
+}
+
+@media (max-width: 576px) {
+  .badge {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  td {
+    font-size: 0.9rem;
+  }
 }

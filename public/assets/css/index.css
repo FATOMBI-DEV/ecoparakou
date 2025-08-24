@@ -1,261 +1,273 @@
-:root {
-  --color-primary: #1F2A44;
-  --color-accent: #FF9800;
-  --color-bg: #F5F1EB;
-  --color-text: #333333;
-  --color-white: #ffffff;
-  --color-muted: #6c757d;
-  --color-hover: #f0f0f0;
-  --font-main: 'Poppins', sans-serif;
-}
+  :root {
+    --color-primary: #1F2A44;
+    --color-accent: #FF9800;
+    --color-bg: #F5F1EB;
+    --color-text: #333333;
+    --color-white: #ffffff;
+    --color-muted: #6c757d;
+    --color-hover: #f0f0f0;
+    --font-main: 'Poppins', sans-serif;
+  }
 
-body {
-  font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
 
-/* === Hero Section === */
-.hero-section {
-  padding-top: O;
-  margin-top: 0;
-  height: 60vh;
-  background: url('/ecoparakou/public/assets/img/hero2.jpg') center/cover no-repeat;
-  position: relative;
-  color: var(--color-white);
-}
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(31, 42, 68, 0.7);
-  z-index: 0;
-  
-}
+  body {
+    font-family: var(--font-main);
+    background-color:var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+  }
 
-.hero-content {
-  z-index: 1;
-}
+  /* === Hero Section === */
+  .hero-section {
+    padding-top: O;
+    margin-top: 0;
+    height: 60vh;
+    background: url('/ecoparakou/public/assets/img/hero2.jpg') center/cover no-repeat;
+    position: relative;
+    color: var(--color-white);
+  }
 
-.hero-section h1 {
-  font-size: 3rem;
-  color: var(--color-accent);
-}
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 42, 68, 0.7);
+    z-index: 0;
+    
+  }
 
-.hero-section p {
-  font-size: 1.2rem;
-  color: var(--color-white);
-}
+  .hero-content {
+    z-index: 1;
+  }
 
-.btn-accent {
-  background-color: var(--color-accent);
-  color: var(--color-white);
-  border: none;
-  padding: 0.6rem 1.2rem;
-  font-weight: 500;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
+  .hero-section h1 {
+    font-size: 3rem;
+    color: var(--color-accent);
+  }
 
-.btn-accent:hover {
-  background-color: #e67e00;
-}
+  .hero-section p {
+    font-size: 1.2rem;
+    color: var(--color-white);
+  }
 
-/* === Section titres === */
-.secteurs-section h3,
-.entreprises-section h3,
-.stats-section h3 {
-  font-weight: 600;
-  color: var(--color-primary);
-}
+  .btn-accent {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
 
-.entreprise-card {
-  position: relative;
-  border: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-}
+  .btn-accent:hover {
+    background-color: #e67e00;
+  }
 
-.entreprise-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-}
+  /* === Section titres === */
+  .secteurs-section h3,
+  .entreprises-section h3,
+  .stats-section h3 {
+    font-weight: 700;
+    color: var(--color-primary);
+  }
 
-.entreprise-card .card-img-top {
-  height: 120px;
-  object-fit: cover;
-  border-bottom: 1px solid #eee;
-}
+  /*.entreprises-section{
+    background-color: red;
+    width: 100%;
+  }
 
-.entreprise-card .card-body {
-  padding: 0.75rem;
-}
+  .stats-section{
+    background-color: #e67e00;
+  }*/
 
-.entreprise-card .card-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-primary, #1f2a44);
-}
+  .entreprise-card {
+    position: relative;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+  }
 
-.entreprise-card .card-text {
-  font-size: 0.85rem;
-  color: #555;
-}
+  .entreprise-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+  }
 
-/* Message au survol */
-.card-hover-message {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(31, 42, 68, 0.85);
-  color: #fff;
-  font-size: 0.85rem;
-  text-align: center;
-  padding: 0.4rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+  .entreprise-card .card-img-top {
+    height: 120px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+  }
 
-.entreprise-card:hover .card-hover-message {
-  opacity: 1;
-}
+  .entreprise-card .card-body {
+    padding: 0.75rem;
+  }
 
-/* Animation d'apparition en cascade */
-.entreprise-fade {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
+  .entreprise-card .card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-primary, #1f2a44);
+  }
 
-.entreprise-fade:nth-child(1) { animation-delay: 0.1s; }
-.entreprise-fade:nth-child(2) { animation-delay: 0.2s; }
-.entreprise-fade:nth-child(3) { animation-delay: 0.3s; }
-.entreprise-fade:nth-child(4) { animation-delay: 0.4s; }
-.entreprise-fade:nth-child(5) { animation-delay: 0.5s; }
-.entreprise-fade:nth-child(6) { animation-delay: 0.6s; }
+  .entreprise-card .card-text {
+    font-size: 0.85rem;
+    color: #555;
+  }
 
-@keyframes fadeInUp {
-  to {
+  /* Message au survol */
+  .card-hover-message {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(31, 42, 68, 0.85);
+    color: #fff;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .entreprise-card:hover .card-hover-message {
     opacity: 1;
-    transform: translateY(0);
   }
-}
+
+  /* Animation d'apparition */
+  .entreprise-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .entreprise-fade:nth-child(1) { animation-delay: 0.1s; }
+  .entreprise-fade:nth-child(2) { animation-delay: 0.2s; }
+  .entreprise-fade:nth-child(3) { animation-delay: 0.3s; }
+  .entreprise-fade:nth-child(4) { animation-delay: 0.4s; }
+  .entreprise-fade:nth-child(5) { animation-delay: 0.5s; }
+  .entreprise-fade:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
 
-.stat-card {
-  background-color: var(--color-white);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  .stat-card {
+    background-color: var(--color-white);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
 
-.stat-icon i {
-  color: var(--color-accent);
-}
+  .stat-icon i {
+    color: var(--color-accent);
+  }
 
-.stat-value {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  font-size: 1rem;
-  color: var(--color-muted);
-}
-
-/* Responsive spacing */
-@media (max-width: 768px) {
   .stat-value {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
   }
-}
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--color-muted);
+  }
+
+  /* Responsive spacing */
+  @media (max-width: 768px) {
+    .stat-value {
+      font-size: 1.8rem;
+    }
+  }
 
 
 
 
 
-/* === Cartes Secteurs Populaires === */
-.secteur-card {
-  position: relative;
-  border: none;
-  background-color: var(--color-white);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  cursor: pointer;
-}
+  /* === Cartes Secteurs Populaires === */
+  .secteur-card {
+    position: relative;
+    border: none;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+  }
 
-.secteur-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-}
+  .secteur-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+  }
 
-.secteur-card .card-body {
-  padding: 0.75rem;
-}
+  .secteur-card .card-body {
+    padding: 0.75rem;
+  }
 
-.secteur-card .card-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-primary);
-}
+  .secteur-card .card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
 
-.secteur-card .card-text {
-  font-size: 0.85rem;
-  color: var(--color-muted);
-}
+  .secteur-card .card-text {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
 
-.secteur-card .stat-icon i {
-  color: var(--color-accent);
-  transition: transform 0.3s ease;
-}
+  .secteur-card .stat-icon i {
+    color: var(--color-accent);
+    transition: transform 0.3s ease;
+  }
 
-.secteur-card:hover .stat-icon i {
-  transform: scale(1.2);
-}
+  .secteur-card:hover .stat-icon i {
+    transform: scale(1.2);
+  }
 
-/* Animation d’apparition en cascade */
-.secteur-fade {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
+  /* Animation d’apparition en cascade */
+  .secteur-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
 
-.secteur-fade:nth-child(1) { animation-delay: 0.1s; }
-.secteur-fade:nth-child(2) { animation-delay: 0.2s; }
-.secteur-fade:nth-child(3) { animation-delay: 0.3s; }
-.secteur-fade:nth-child(4) { animation-delay: 0.4s; }
-.secteur-fade:nth-child(5) { animation-delay: 0.5s; }
-.secteur-fade:nth-child(6) { animation-delay: 0.6s; }
-
-
+  .secteur-fade:nth-child(1) { animation-delay: 0.1s; }
+  .secteur-fade:nth-child(2) { animation-delay: 0.2s; }
+  .secteur-fade:nth-child(3) { animation-delay: 0.3s; }
+  .secteur-fade:nth-child(4) { animation-delay: 0.4s; }
+  .secteur-fade:nth-child(5) { animation-delay: 0.5s; }
+  .secteur-fade:nth-child(6) { animation-delay: 0.6s; }
 
 
 
-/* Badge accent */
-.bg-accent {
-  background-color: var(--color-accent);
-  color: var(--color-white);
-  font-size: 0.75rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 12px;
-}
 
-/* Animation en cascade pour les secteurs */
-.entreprise-fade-1 { animation-delay: 0.1s; }
-.entreprise-fade-2 { animation-delay: 0.2s; }
-.entreprise-fade-3 { animation-delay: 0.3s; }
-.entreprise-fade-4 { animation-delay: 0.4s; }
-.entreprise-fade-5 { animation-delay: 0.5s; }
-.entreprise-fade-6 { animation-delay: 0.6s; }
+
+  /* Badge accent */
+  .bg-accent {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+  }
+
+  /* Animation en cascade pour les secteurs 
+  .entreprise-fade-1 { animation-delay: 0.1s; }
+  .entreprise-fade-2 { animation-delay: 0.2s; }
+  .entreprise-fade-3 { animation-delay: 0.3s; }
+  .entreprise-fade-4 { animation-delay: 0.4s; }
+  .entreprise-fade-5 { animation-delay: 0.5s; }
+  .entreprise-fade-6 { animation-delay: 0.6s; }*/

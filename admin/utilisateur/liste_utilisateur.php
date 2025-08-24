@@ -18,7 +18,7 @@
     $stmt->close();
 
     if ($role !== 'admin') {
-      header("Location: ../access-denied.php");
+      header("Location: ../dashboard.php");
       exit;
     }
 
@@ -39,19 +39,31 @@
     </head>
 
     <body>
-        <?php include_once '../../includes/header.php'; ?>
-        <main>
-          <div class="container py-5">
-            <h2 class="mb-4">👥 Gestion des utilisateurs</h2>
-            <a href="ajouter_utilisateur.php" class="btn btn-accent mb-3">
-              <i class="bi bi-person-plus"></i> Ajouter un utilisateur
-            </a>
+      <?php include_once '../../includes/header.php'; ?>
+      <main>
+        <div class="container py-5">
+          <h2 class="text-center text-primary mb-4">
+            <i class="bi bi-people-fill me-2"></i> Gestion des utilisateurs
+          </h2>
 
-            <?php if (isset($_GET['success'])): ?>
-              <div class="alert alert-success text-center fw-semibold">
-                <?= htmlspecialchars($_GET['success']) ?>
-              </div>
-            <?php endif; ?>
+          <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <div class="d-flex justify-content-between w-100 mt-3">
+              <a href="../dashboard.php" class="btn btn-secondary">
+                <i class="bi bi-arrow-left-circle me-1"></i> Retour
+              </a>
+              <a href="ajouter_utilisateur.php" class="btn btn-accent">
+                <i class="bi bi-person-plus me-1"></i> Ajouter un utilisateur
+              </a>
+            </div>
+          </div>
+
+          <?php if (isset($_GET['success'])): ?>
+            <div class="alert alert-success text-center fw-semibold">
+              <?= htmlspecialchars($_GET['success']) ?>
+            </div>
+          <?php endif; ?>
+
+          <div class="table-responsive">
 
             <table class="table table-bordered table-hover align-middle">
               <thead class="table-light">
@@ -85,29 +97,32 @@
                       <?php endif; ?>
                     </td>
                     <td>
-                      <a href="modifier_utilisateur.php?id=<?= $u['id'] ?>" class="btn btn-sm btn-outline-primary" title="Modifier">
-                        <i class="bi bi-pencil-square"></i>
-                      </a>
-
-                      <?php if ($u['actif']): ?>
-                        <a href="toggle_activation.php?id=<?= $u['id'] ?>" class="btn btn-sm btn-outline-warning" title="Désactiver" onclick="return confirm('Désactiver ce compte ?')">
-                          <i class="bi bi-person-dash"></i>
+                      <div class="d-flex flex-wrap gap-1">
+                        <a href="modifier_utilisateur.php?id=<?= $u['id'] ?>" class="btn btn-sm btn-outline-primary" title="Modifier">
+                          <i class="bi bi-pencil-square"></i>
                         </a>
-                      <?php else: ?>
-                        <a href="toggle_activation.php?id=<?= $u['id'] ?>" class="btn btn-sm btn-outline-success" title="Activer" onclick="return confirm('Réactiver ce compte ?')">
-                          <i class="bi bi-person-check"></i>
-                        </a>
-                      <?php endif; ?>
 
-                      <button onclick="confirmerSuppression(<?= $u['id'] ?>, '<?= addslashes($u['nom']) ?>')" class="btn btn-sm btn-outline-danger" title="Supprimer">
-                        <i class="bi bi-trash"></i>
-                      </button>
+                        <?php if ($u['actif']): ?>
+                          <a href="toggle_activation.php?id=<?= $u['id'] ?>" class="btn btn-sm btn-outline-warning" title="Désactiver" onclick="return confirm('Désactiver ce compte ?')">
+                            <i class="bi bi-person-dash"></i>
+                          </a>
+                        <?php else: ?>
+                          <a href="toggle_activation.php?id=<?= $u['id'] ?>" class="btn btn-sm btn-outline-success" title="Activer" onclick="return confirm('Réactiver ce compte ?')">
+                            <i class="bi bi-person-check"></i>
+                          </a>
+                        <?php endif; ?>
+
+                        <button onclick="confirmerSuppression(<?= $u['id'] ?>, '<?= addslashes($u['nom']) ?>')" class="btn btn-sm btn-outline-danger" title="Supprimer">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 <?php endwhile; ?>
               </tbody>
             </table>
           </div>
+        </div>
       </main>
       
       <script>

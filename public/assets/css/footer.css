@@ -1,12 +1,27 @@
-html, body {
-  height: 100%;
-}
 
-body {
-  display: flex;
-  flex-direction: column;
-}
+  :root {
+    --color-primary: #1F2A44;
+    --color-accent: #FF9800;
+    --color-bg: #F5F1EB;
+    --color-text: #333333;
+    --font-main: 'Poppins', sans-serif;
+  }
 
-main {
-  flex: 1;
-}
+  footer{
+  background-color: var(--color-primary);
+  font-family: var(--font-main);
+  color: #F5F1EB;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
